@@ -6,7 +6,6 @@
         "classes": "python",
         "devices": "python",
         "users": "python",
-        "cisco_ise": "python",
         "accounts": "python",
     },
     "python.analysis.typeCheckingMode": "strict",
