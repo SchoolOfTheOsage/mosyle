@@ -1,0 +1,26 @@
+{
+    "material-icon-theme.folders.associations": {
+        "actions": "python",
+        "api": "python",
+        "classes": "python",
+        "devices": "python",
+        "users": "python",
+    },
+    "python.analysis.typeCheckingMode": "strict",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.formatting.provider": "black",
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./tests",
+        "-p",
+        "test_*.py"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestEnabled": true
+}
