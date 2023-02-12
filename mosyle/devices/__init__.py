@@ -15,10 +15,10 @@ class Devices:
         access_token: str,
         platform: Platforms,
         tags: list[str] | None = None,
-        os_versions: list[OsVersions] | None = None,
+        os_versions: list[str] | None = None,
         serial_numbers: list[str] | None = None,
         page: int | None = None,
-        attributes: list[Attributes] | None = None,
+        attributes: Attributes | None = None,
     ):
         headers = {
             "content-type": "application/json",
@@ -34,7 +34,7 @@ class Devices:
         if serial_numbers is not None:
             options["serial_numbers"] = serial_numbers
         if attributes is not None:
-            options["specific_columns"] = attributes
+            options["specific_columns"] = attributes.to_strings()
         if page is not None:
             options["page"] = page
         payload = {

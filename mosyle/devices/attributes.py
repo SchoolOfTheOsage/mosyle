@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class Attributes(Enum):
+class Attribute(Enum):
     DEVICE_UDID = "deviceudid"
     TOTAL_DISK = "total_disk"
     OPERATING_SYSTEM = "os"
@@ -70,3 +70,14 @@ class Attributes(Enum):
     LOCATION = "location"
     LATITUDE = "latitude"
     LONGITUDE = "longitude"
+
+
+class Attributes:
+    def __init__(self):
+        self.attributes: list[Attribute] = []
+
+    def add(self, attribute: Attribute):
+        self.attributes.append(attribute)
+
+    def to_strings(self):
+        return [attribute.value for attribute in self.attributes]
