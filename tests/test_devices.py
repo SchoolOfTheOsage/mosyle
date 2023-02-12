@@ -7,9 +7,8 @@ settings.load()
 
 def test_read():
     devices = Devices()
-    devices.read(settings.read("access_token"), Platforms.I_OS)
+    devices.read(
+        settings.read("access_token"),
+        Platforms.I_OS,
+    )
     assert len(devices.devices) > 0
-
-
-def test_always_fails():
-    assert False
