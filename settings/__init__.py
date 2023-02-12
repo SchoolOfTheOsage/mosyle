@@ -13,14 +13,14 @@ class Settings:
         with open("settings.json", "w", encoding="utf8") as file:
             json.dump(self.settings, file)
 
-    def create_key(self, key: str, value: str):
+    def create(self, key: str, value: str):
         self.settings[key] = value
 
-    def read_key(self, key: str):
+    def read(self, key: str):
         return self.settings[key]
 
-    def update_key(self, key: str, value: str):
+    def update(self, key: str, value: str):
         self.settings[key] = value
 
-    def delete_key(self, key: str):
+    def delete(self, key: str):
         del self.settings[key]
