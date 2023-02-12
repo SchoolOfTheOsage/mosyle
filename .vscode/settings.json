@@ -28,5 +28,38 @@
     "python.testing.unittestEnabled": false,
     "python.testing.pytestArgs": [
         "tests"
+    ],
+    "cSpell.words": [
+        "appleid",
+        "bulkops",
+        "deviceudid",
+        "getciscoise",
+        "idclass",
+        "iddevicegroup",
+        "idteacher",
+        "idusermosyle",
+        "idusers",
+        "imei",
+        "isroaming",
+        "kinfo",
+        "listclasses",
+        "listdevicegroups",
+        "listdevices",
+        "listdevicesbygroup",
+        "listusers",
+        "lostmode",
+        "managedappleid",
+        "meid",
+        "Mosyle",
+        "needosupdate",
+        "osversion",
+        "osversions",
+        "productkeyupdate",
+        "serialnumber",
+        "tvos",
+        "UDID",
+        "udids",
+        "userid",
+        "usertype"
     ]
 }
