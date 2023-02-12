@@ -1,4 +1,5 @@
 {
     "access_token": "1234567890",
-    "authorization": "1234567890"
+    "username": "user@example.com",
+    "password": "1234567890"
 }
