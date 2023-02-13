@@ -1,8 +1,7 @@
 import requests
 
-from .. import URL
+from .. import HEADERS, URL
 from .attributes import Attributes
-from .os_versions import OsVersions
 from .platforms import Platforms
 
 
@@ -20,12 +19,10 @@ class Devices:
         page: int | None = None,
         attributes: Attributes | None = None,
     ):
-        headers = {
-            "content-type": "application/json",
-        }
+        headers = HEADERS.copy()
+
         options = {
             "os": platform.value,
-            "page": page,
         }
         if tags is not None:
             options["tags"] = tags
@@ -46,11 +43,59 @@ class Devices:
         )
         self.devices = response.json()["response"]["devices"]
 
-    def read_group_by_name(self):
+    def read_group_by_id(
+        self,
+        group_id: str,
+        access_token: str,
+        platform: Platforms,
+        tags: list[str] | None = None,
+        os_versions: list[str] | None = None,
+        serial_numbers: list[str] | None = None,
+        page: int | None = None,
+        attributes: Attributes | None = None,
+    ):
         pass
 
-    def read_group_by_id(self):
-        pass
+    def read_group_by_name(
+        self,
+        name: str,
+        access_token: str,
+        platform: Platforms,
+        tags: list[str] | None = None,
+        os_versions: list[str] | None = None,
+        serial_numbers: list[str] | None = None,
+        page: int | None = None,
+        attributes: Attributes | None = None,
+    ):
+        headers = HEADERS.copy()
+
+        options = {
+            "os": platform.value,
+        }
+        payload = {
+            "accessToken": access_token,
+            "options": options,
+        }
+        response = requests.post(
+            URL + "/listdevicegroups", json=payload, timeout=60, headers=headers
+        )
+        groups = dict(
+            [
+                (group["name"], group["id"])
+                for group in response.json()["response"]["groups"]
+            ]
+        )
+        group_id = groups[name]
+        self.read_group_by_id(
+            access_token=access_token,
+            group_id=group_id,
+            platform=platform,
+            tags=tags,
+            os_versions=os_versions,
+            serial_numbers=serial_numbers,
+            page=page,
+            attributes=attributes,
+        )
 
     def update(self):
         pass
