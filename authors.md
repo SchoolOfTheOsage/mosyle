@@ -8,4 +8,4 @@ This does not necessarily list everyone who has contributed code, especially sin
 
 |Author|
 |-|
-|Nathan McGuire @ [School of the Osage](https://osageschools.org/)|
+|[Nathan McGuire](https://github.com/nathanmcguire) @ [School of the Osage](https://osageschools.org/)|
