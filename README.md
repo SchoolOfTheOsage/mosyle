@@ -1,2 +1,0 @@
-# Mosyle Manager
-
