@@ -1,4 +1,4 @@
-from ..mosyle.devices import Devices, Platforms
+from ..mosyle.devices.devices import Devices, Platforms
 from ..settings import Settings
 
 settings = Settings()

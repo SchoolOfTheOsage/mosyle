@@ -30,8 +30,10 @@
         "tests"
     ],
     "cSpell.words": [
+        "adminlogs",
         "appleid",
         "bulkops",
+        "ciscoise",
         "deviceudid",
         "getciscoise",
         "idclass",
@@ -55,6 +57,7 @@
         "osversion",
         "osversions",
         "productkeyupdate",
+        "rtype",
         "serialnumber",
         "tvos",
         "UDID",
