@@ -1,7 +1,7 @@
 import requests
 from requests.auth import HTTPBasicAuth
 
-from . import defaults
+from .defaults import REQUEST_HEADERS, REQUEST_TIMEOUT, REQUEST_URL
 
 
 class DeviceOs:
@@ -85,7 +85,7 @@ class DeviceAttributes:
     LONGITUDE = "longitude"
 
 
-class DeviceOperationTypes:
+class DeviceOperation:
     """Device Operations"""
 
     WIPE_DEVICES = "wipe_devices"
@@ -97,20 +97,13 @@ class DeviceOperationTypes:
     CHANGE_TO_LIMBO = "change_to_limbo"
 
 
-class DeviceLostModeOperationTypes:
+class DeviceLostModeOperation:
     """Device Lost Mode Operations"""
 
     ENABLE = "enable"
     DISABLE = "disable"
     PLAY_SOUND = "play_sound"
     REQUEST_LOCATION = "request_location"
-
-
-class CiscoIseOperationTypes:
-    """Cisco ISE Operation Types"""
-
-    ADD = "add"
-    REMOVE = "remove"
 
 
 DeviceGroupOs = DeviceOs
@@ -132,7 +125,7 @@ class Devices:
         else:
             self.auth = None
 
-    def list_devices(
+    def read(
         self,
         devices_os: str,
         tags: list[str] | None = None,
@@ -140,8 +133,8 @@ class Devices:
         serial_numbers: list[str] | None = None,
         page: int | None = None,
         specific_columns: list[str] | None = None,
-    ) -> dict[str, object]:
-        url = f"{defaults.REQUEST_URL}/listdevices"
+    ):
+        url = f"{REQUEST_URL}/listdevices"
 
         options: dict[str, object] = {
             "os": devices_os,
@@ -162,18 +155,20 @@ class Devices:
             "options": options,
         }
 
-        return requests.post(
+        response = requests.post(
             url,
             json=payload,
-            headers=defaults.REQUEST_HEADERS,
-            timeout=defaults.REQUEST_TIMEOUT,
+            headers=REQUEST_HEADERS,
+            timeout=REQUEST_TIMEOUT,
         ).json()
 
-    def list_devices_by_group(
+        self.devices = response["devices"]
+
+    def _list_devices_by_group(
         self,
         device_group_id: str,
     ) -> dict[str, object]:
-        url = f"{defaults.REQUEST_URL}/listdevicesbygroup"
+        url = f"{REQUEST_URL}/listdevicesbygroup"
 
         options = {
             "iddevicegroup": device_group_id,
@@ -187,12 +182,12 @@ class Devices:
         return requests.post(
             url,
             json=payload,
-            headers=defaults.REQUEST_HEADERS,
-            timeout=defaults.REQUEST_TIMEOUT,
+            headers=REQUEST_HEADERS,
+            timeout=REQUEST_TIMEOUT,
         ).json()
 
-    def list_device_groups(self, operating_system: str) -> dict[str, object]:
-        url = f"{defaults.REQUEST_URL}/listdevicegroups"
+    def _list_device_groups(self, operating_system: str) -> dict[str, object]:
+        url = f"{REQUEST_URL}/listdevicegroups"
 
         options = {
             "os": operating_system,
@@ -206,11 +201,46 @@ class Devices:
         return requests.post(
             url,
             json=payload,
-            headers=defaults.REQUEST_HEADERS,
-            timeout=defaults.REQUEST_TIMEOUT,
+            headers=REQUEST_HEADERS,
+            timeout=REQUEST_TIMEOUT,
         ).json()
 
-    def bulk_operations(
+    def _update_device_attribute(
+        self,
+        serial_number: str,
+        asset_tag: str | None = None,
+        tags: str | None = None,
+        name: str | None = None,
+        lock: str | None = None,
+    ):
+        url = f"{REQUEST_URL}/devices"
+
+        element: dict[str, object] = {
+            "serialnumber": serial_number,
+        }
+        if asset_tag is not None:
+            element["asset_tag"] = asset_tag
+        if tags is not None:
+            element["tags"] = tags
+        if name is not None:
+            element["name"] = name
+        if lock is not None:
+            element["lock"] = lock
+
+        payload = {
+            "accessToken": self.access_token,
+            "elements": [element],
+        }
+
+        requests.post(
+            url,
+            json=payload,
+            headers=REQUEST_HEADERS,
+            timeout=REQUEST_TIMEOUT,
+            auth=self.auth,
+        ).json()
+
+    def _bulk_operations(
         self,
         operation: str,
         device_udids: list[str] | None = None,
@@ -220,65 +250,85 @@ class Devices:
         disallow_proximity_setup: bool | None = None,
         revoke_vpp_license: bool | None = None,
     ) -> dict[str, object]:
-        url = f"{defaults.REQUEST_URL}/bulkops"
-
-        elements: list[dict[str, object]] | None = None
+        url = f"{REQUEST_URL}/bulkops"
 
         if device_udids is None and group_ids is None:
             device_udids = [
                 str(devices[DeviceAttributes.DEVICE_UDID]) for devices in self.devices
             ]
 
+        element: dict[str, object] = {
+            "operation": operation,
+        }
+        if device_udids is not None:
+            element["devices"] = device_udids
+        if group_ids is not None:
+            element["groups"] = group_ids
+
+        options: dict[str, object] = {}
+        if pin_code is not None:
+            options["pin_code"] = pin_code
+        if preserve_data_plan is not None:
+            options["PreserveDataPlan"] = preserve_data_plan
+        if disallow_proximity_setup is not None:
+            options["DisallowProximitySetup"] = disallow_proximity_setup
+        if revoke_vpp_license is not None:
+            options["RevokeVPPLicenses"] = revoke_vpp_license
+        if len(options) > 0:
+            element["options"] = options
+
         payload = {
             "accessToken": self.access_token,
-            "elements": elements,
+            "elements": [element],
         }
 
         return requests.post(
             url,
             json=payload,
-            headers=defaults.REQUEST_HEADERS,
-            timeout=defaults.REQUEST_TIMEOUT,
+            headers=REQUEST_HEADERS,
+            timeout=REQUEST_TIMEOUT,
+            auth=self.auth,
         ).json()
 
-    def lost_mode_operations(self):
-        url = f"{defaults.REQUEST_URL}/lostmode"
+    def _lost_mode_operations(
+        self,
+        operation: str,
+        device_udids: list[str] | None = None,
+        group_ids: list[str] | None = None,
+        message: str | None = None,
+        phone_number: str | None = None,
+        footnote: str | None = None,
+    ):
+        url = f"{REQUEST_URL}/lostmode"
 
-    def cisco_ise_operations(self):
-        url = f"{defaults.REQUEST_URL}/ciscoise"
+        if device_udids is None and group_ids is None:
+            device_udids = [
+                str(devices[DeviceAttributes.DEVICE_UDID]) for devices in self.devices
+            ]
 
-    def update_devices(self):
-        url = f"{defaults.REQUEST_URL}/devices"
+        element: dict[str, object] = {
+            "operation": operation,
+        }
+        if device_udids is not None:
+            element["devices"] = device_udids
+        if group_ids is not None:
+            element["groups"] = group_ids
+        if message is not None:
+            element["message"] = message
+        if phone_number is not None:
+            element["phone_number"] = phone_number
+        if footnote is not None:
+            element["footnote"] = footnote
 
-    def wipe(self):
-        pass
+        payload = {
+            "accessToken": self.access_token,
+            "elements": [element],
+        }
 
-    def restart(self):
-        pass
-
-    def shutdown(self):
-        pass
-
-    def clear_commands(self):
-        pass
-
-    def clear_pending_commands(self):
-        pass
-
-    def clear_failed_commands(self):
-        pass
-
-    def change_to_limbo(self):
-        pass
-
-    def enable_lost_mode(self):
-        pass
-
-    def disable_lost_mode(self):
-        pass
-
-    def play_sound(self):
-        pass
-
-    def request_location(self):
-        pass
+        return requests.post(
+            url,
+            json=payload,
+            headers=REQUEST_HEADERS,
+            timeout=REQUEST_TIMEOUT,
+            auth=self.auth,
+        ).json()
