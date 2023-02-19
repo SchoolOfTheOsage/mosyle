@@ -3,7 +3,7 @@ from enum import Enum
 
 
 class ClassColumn(str, Enum):
-    """Class Columns"""
+    """Mosyle Class Column Enumerations"""
 
     ID = "id"
     CLASS_NAME = "class_name"

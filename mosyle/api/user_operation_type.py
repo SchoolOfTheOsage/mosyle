@@ -1,8 +1,9 @@
+"""Mosyle User Operation Type Enumerations"""
 from enum import Enum
 
 
 class UserOperationType(str, Enum):
-    """User Operation Types"""
+    """Mosyle User Operation Type Enumerations"""
 
     STUDENT = "S"
     TEACHER = "T"

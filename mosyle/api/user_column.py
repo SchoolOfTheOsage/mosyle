@@ -1,8 +1,9 @@
+"""Mosyle User Column Enumerations"""
 from enum import Enum
 
 
 class UserColumn(str, Enum):
-    """User Columns"""
+    """Mosyle User Column Enumerations"""
 
     ID = "id"
     NAME = "name"

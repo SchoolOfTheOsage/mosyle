@@ -1,8 +1,9 @@
+"""Mosyle Class Platform Enumerations"""
 from enum import Enum
 
 
 class ClassPlatform(str, Enum):
-    """Class Platforms"""
+    """Mosyle Class Platform Enumerations"""
 
     IOS = "ios"
     MACOS = "mac"

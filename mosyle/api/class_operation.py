@@ -1,8 +1,9 @@
+"""Mosyle Class Operation Enumerations"""
 from enum import Enum
 
 
 class ClassOperation(str, Enum):
-    """Class Operations"""
+    """Mosyle Class Operation Enumerations"""
 
     SAVE = "save"
     DELETE = "delete"
