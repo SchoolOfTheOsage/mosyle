@@ -1,0 +1,2 @@
+class CiscoIse:
+    pass
