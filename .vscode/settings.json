@@ -58,6 +58,7 @@
         "osversion",
         "osversions",
         "productkeyupdate",
+        "pypi",
         "rtype",
         "serialnumber",
         "tvos",
