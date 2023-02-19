@@ -1,237 +1,27 @@
 """Mosyle API"""
-from enum import Enum
 
 import requests
 from requests.auth import HTTPBasicAuth
+
+from .account_operation import AccountOperation
+from .cisco_ise_operation import CiscoIseOperation
+from .class_column import ClassColumn
+from .class_operation import ClassOperation
+from .class_platform import ClassPlatform
+from .device_column import DeviceColumn
+from .device_lost_mode_operation import DeviceLostModeOperation
+from .device_operation import DeviceOperation
+from .device_platform import DevicePlatform
+from .user_column import UserColumn
+from .user_list_type import UserListType
+from .user_operation import UserOperation
+from .user_operation_type import UserOperationType
 
 REQUEST_URL: str = "https://managerapi.mosyle.com/v2"
 REQUEST_HEADERS = {
     "content-type": "application/json",
 }
 REQUEST_TIMEOUT: int = 60
-
-
-class DevicePlatform(str, Enum):
-    """Device Platforms"""
-
-    IOS = "ios"
-    MACOS = "macos"
-    TVOS = "tvos"
-
-    def __str__(self) -> str:
-        return str.__str__(self)
-
-
-class DeviceColumn(str, Enum):
-    """Device Columns"""
-
-    DEVICE_UDID = "deviceudid"
-    TOTAL_DISK = "total_disk"
-    OPERATING_SYSTEM = "os"
-    SERIAL_NUMBER = "serial_number"
-    DEVICE_NAME = "device_name"
-    DEVICE_MODEL = "device_model"
-    BATTERY = "battery"
-    OS_VERSION = "osversion"
-    DATE_INFO = "date_info"
-    CARRIER = "carrier"
-    ROAMING_ENABLED = "roaming_enabled"
-    IS_ROAMING = "isroaming"
-    IMEI = "imei"
-    MEID = "meid"
-    AVAILABLE_DISK = "available_disk"
-    WIFI_MAC_ADDRESS = "wifi_mac_address"
-    LAST_IP_BEAT = "last_ip_beat"
-    LAST_LAN_IP = "last_lan_ip"
-    BLUETOOTH_MAC_ADDRESS = "bluetooth_mac_address"
-    IS_SUPERVISED = "is_supervised"
-    DATE_APP_INFO = "date_app_info"
-    DATE_LAST_BEAT = "date_last_beat"
-    DATE_LAST_PUSH = "date_last_push"
-    STATUS = "status"
-    IS_ACTIVATION_LOCK_ENABLED = "isActivationLockEnabled"
-    IS_DEVICE_LOCATOR_SERVICE_ENABLED = "isDeviceLocatorServiceEnabled"
-    IS_DO_NOT_DISTURB_IN_EFFECT = "isDoNotDisturbInEffect"
-    IS_CLOUD_BACKUP_ENABLED = "isCloudBackupEnabled"
-    IS_NETWORK_TETHERED = "IsNetworkTethered"
-    NEED_OS_UPDATE = "needosupdate"
-    PRODUCT_KEY_UPDATE = "productkeyupdate"
-    DEVICE_TYPE = "device_type"
-    LOSTMODE_STATUS = "lostmode_status"
-    IS_MUTED = "is_muted"
-    DATE_MUTED = "date_muted"
-    ACTIVATION_BYPASS = "activation_bypass"
-    DATE_MEDIA_INFO = "date_media_info"
-    TAGS = "tags"
-    ITUNES_STORE_ACCOUNT_HASH = "iTunesStoreAccountHash"
-    ITUNES_STORE_ACCOUNT_IS_ACTIVE = "iTunesStoreAccountIsActive"
-    DATE_PROFILES_INFO = "date_profiles_info"
-    ETHERNET_MAC_ADDRESS = "ethernet_mac_address"
-    MODEL_NAME = "model_name"
-    LAST_CLOUD_BACKUP_DATE = "LastCloudBackupDate"
-    SYSTEM_INTEGRITY_PROTECTION_ENABLED = "SystemIntegrityProtectionEnabled"
-    BUILD_VERSION = "BuildVersion"
-    LOCAL_HOST_NAME = "LocalHostName"
-    HOST_NAME = "HostName"
-    OS_UPDATE_SETTINGS = "OSUpdateSettings"
-    ACTIVE_MANAGED_USERS = "ActiveManagedUsers"
-    CURRENT_CONSOLE_MANAGED_USER = "CurrentConsoleManagedUser"
-    DATE_PRINTERS = "date_printers"
-    AUTO_SETUP_ADMIN_ACCOUNTS = "AutoSetupAdminAccounts"
-    APPLE_TV_ID = "appleTVid"
-    ASSET_TAG = "asset_tag"
-    MANAGEMENT_STATUS = "ManagementStatus"
-    OS_UPDATE_STATUS = "OSUpdateStatus"
-    AVAILABLE_OS_UPDATES = "AvailableOSUpdates"
-    ENROLLMENT_TYPE = "enrollment_type"
-    USER_ID = "userid"
-    USER_NAME = "username"
-    USER_TYPE = "usertype"
-    SHARED_CART_NAME = "SharedCartName"
-    DEVICE_MODEL_NAME = "device_model_name"
-    DATE_KINFO = "date_kinfo"
-    LOCATION = "location"
-    LATITUDE = "latitude"
-    LONGITUDE = "longitude"
-
-    def __str__(self) -> str:
-        return str.__str__(self)
-
-
-class DeviceOperation(str, Enum):
-    """Device Operations"""
-
-    WIPE_DEVICES = "wipe_devices"
-    RESTART_DEVICES = "restart_devices"
-    SHUTDOWN_DEVICES = "shutdown_devices"
-    CLEAR_COMMANDS = "clear_commands"
-    CLEAR_PENDING_COMMANDS = "clear_pending_commands"
-    CLEAR_FAILED_COMMANDS = "clear_failed_commands"
-    CHANGE_TO_LIMBO = "change_to_limbo"
-
-    def __str__(self) -> str:
-        return str.__str__(self)
-
-
-class DeviceLostModeOperation(str, Enum):
-    """Device Lost Mode Operations"""
-
-    ENABLE = "enable"
-    DISABLE = "disable"
-    PLAY_SOUND = "play_sound"
-    REQUEST_LOCATION = "request_location"
-
-    def __str__(self) -> str:
-        return str.__str__(self)
-
-
-class UserColumn(str, Enum):
-    """User Columns"""
-
-    ID = "id"
-    NAME = "name"
-    EMAIL = "email"
-    MANAGED_APPLE_ID = "managedappleid"
-    SERIAL_NUMBER = "serial_number"
-    TYPE = "type"
-    LOCATIONS = "locations"
-    ACCOUNT = "account"
-
-    def __str__(self) -> str:
-        return str.__str__(self)
-
-
-class UserListType(str, Enum):
-    """User List Types"""
-
-    STUDENT = "STUDENT"
-    TEACHER = "TEACHER"
-    LOCATION_LEADER = "LOCATION_LEADER"
-    STAFF = "STAFF"
-    ADMIN = "ADMIN"
-    ACCOUNT_ADMIN = "ACCOUNT_ADMIN"
-    DISTRICT_ADMIN = "DISTRICT_ADMIN"
-
-    def __str__(self) -> str:
-        return str.__str__(self)
-
-
-class UserOperation(str, Enum):
-    """User Operations"""
-
-    SAVE = "save"
-    DELETE = "delete"
-    ASSIGN_DEVICE = "assign_device"
-
-    def __str__(self) -> str:
-        return str.__str__(self)
-
-
-class UserOperationType(str, Enum):
-    """User Operation Types"""
-
-    STUDENT = "S"
-    TEACHER = "T"
-    STAFF = "STAFF"
-
-    def __str__(self) -> str:
-        return str.__str__(self)
-
-
-class ClassOperation(str, Enum):
-    """Class Operations"""
-
-    SAVE = "save"
-    DELETE = "delete"
-
-    def __str__(self) -> str:
-        return str.__str__(self)
-
-
-class ClassPlatform(str, Enum):
-    """Class Platforms"""
-
-    IOS = "ios"
-    MACOS = "mac"
-
-    def __str__(self) -> str:
-        return str.__str__(self)
-
-
-class AccountOperation(str, Enum):
-    """Account Operation"""
-
-    LIST = None
-    REQUEST = "request"
-
-    def __str__(self) -> str:
-        return str.__str__(self)
-
-
-class ClassColumn(str, Enum):
-    """Class Columns"""
-
-    ID = "id"
-    CLASS_NAME = "class_name"
-    COURSE_NAME = "course_name"
-    LOCATION = "location"
-    TEACHER = "teacher"
-    STUDENTS = "students"
-    COORDINATORS = "coordinators"
-    ACCOUNT = "account"
-
-    def __str__(self) -> str:
-        return str.__str__(self)
-
-
-class CiscoIseOperation(str, Enum):
-    """Cisco Ise Operations"""
-
-    ADD = "add"
-    REMOVE = "remove"
-
-    def __str__(self) -> str:
-        return str.__str__(self)
 
 
 class Api:
