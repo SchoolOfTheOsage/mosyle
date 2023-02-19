@@ -23,6 +23,8 @@
 
 ## To Do
 
+[Project](https://github.com/orgs/SchoolOfTheOsage/projects/2/views/1)
+
 ## Resources
 
 - [Mosyle](https://school.mosyle.com)
