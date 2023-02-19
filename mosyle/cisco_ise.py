@@ -1,2 +1,2 @@
-class CiscoIseOperation:
+class CiscoIse:
     pass
