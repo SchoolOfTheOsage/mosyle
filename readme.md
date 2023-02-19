@@ -5,3 +5,13 @@
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/mosyle?style=flat)
 ![Lines of code](https://img.shields.io/tokei/lines/github/SchoolOfTheOsage/mosyle?style=flat)
 ![GitHub](https://img.shields.io/github/license/SchoolOfTheOsage/mosyle?style=flat)
+
+## Installation
+
+pip3 install mosyle
+
+## To Do
+
+## More Resources
+
+## License
