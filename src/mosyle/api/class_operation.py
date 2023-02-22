@@ -1,12 +1,9 @@
 """Mosyle Class Operation Enumerations"""
-from enum import Enum
+from ..str_enum import StrEnum
 
 
-class ClassOperation(str, Enum):
+class ClassOperation(StrEnum):
     """Mosyle Class Operation Enumerations"""
 
     SAVE = "save"
     DELETE = "delete"
-
-    def __str__(self) -> str:
-        return str.__str__(self)

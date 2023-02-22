@@ -1,12 +1,9 @@
 """Mosyle Class Platform Enumerations"""
-from enum import Enum
+from ..str_enum import StrEnum
 
 
-class ClassPlatform(str, Enum):
+class ClassPlatform(StrEnum):
     """Mosyle Class Platform Enumerations"""
 
     IOS = "ios"
     MACOS = "mac"
-
-    def __str__(self) -> str:
-        return str.__str__(self)

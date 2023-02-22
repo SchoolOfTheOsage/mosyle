@@ -1,8 +1,8 @@
 """Mosyle Device Operation Enumerations"""
-from enum import Enum
+from ..str_enum import StrEnum
 
 
-class DeviceOperation(str, Enum):
+class DeviceOperation(StrEnum):
     """Mosyle Device Operation Enumerations"""
 
     WIPE_DEVICES = "wipe_devices"
@@ -12,6 +12,3 @@ class DeviceOperation(str, Enum):
     CLEAR_PENDING_COMMANDS = "clear_pending_commands"
     CLEAR_FAILED_COMMANDS = "clear_failed_commands"
     CHANGE_TO_LIMBO = "change_to_limbo"
-
-    def __str__(self) -> str:
-        return str.__str__(self)

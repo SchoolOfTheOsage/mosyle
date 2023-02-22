@@ -1,12 +1,9 @@
 """Mosyle Cisco Ise Operation Enumerations"""
-from enum import Enum
+from ..str_enum import StrEnum
 
 
-class CiscoIseOperation(str, Enum):
+class CiscoIseOperation(StrEnum):
     """Mosyle Cisco Ise Operation Enumerations"""
 
     ADD = "add"
     REMOVE = "remove"
-
-    def __str__(self) -> str:
-        return str.__str__(self)

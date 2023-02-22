@@ -1,12 +1,9 @@
 """Mosyle Account Operation Enumerations"""
-from enum import Enum
+from ..str_enum import StrEnum
 
 
-class AccountOperation(str, Enum):
+class AccountOperation(StrEnum):
     """Mosyle Account Operation Enumerations"""
 
     LIST = None
     REQUEST = "request"
-
-    def __str__(self) -> str:
-        return str.__str__(self)

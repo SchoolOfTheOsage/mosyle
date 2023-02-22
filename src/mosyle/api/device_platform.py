@@ -1,13 +1,10 @@
 """Mosyle Device Platform Enumerations"""
-from enum import Enum
+from ..str_enum import StrEnum
 
 
-class DevicePlatform(str, Enum):
+class DevicePlatform(StrEnum):
     """Mosyle Device Platform Enumerations"""
 
     IOS = "ios"
     MACOS = "macos"
     TVOS = "tvos"
-
-    def __str__(self) -> str:
-        return str.__str__(self)

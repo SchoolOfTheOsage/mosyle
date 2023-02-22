@@ -1,8 +1,8 @@
 """Mosyle User Column Enumerations"""
-from enum import Enum
+from ..str_enum import StrEnum
 
 
-class UserColumn(str, Enum):
+class UserColumn(StrEnum):
     """Mosyle User Column Enumerations"""
 
     ID = "id"
@@ -13,6 +13,3 @@ class UserColumn(str, Enum):
     TYPE = "type"
     LOCATIONS = "locations"
     ACCOUNT = "account"
-
-    def __str__(self) -> str:
-        return str.__str__(self)

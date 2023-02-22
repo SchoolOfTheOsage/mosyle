@@ -1,13 +1,10 @@
 """Mosyle User Operation Enumerations"""
-from enum import Enum
+from ..str_enum import StrEnum
 
 
-class UserOperation(str, Enum):
+class UserOperation(StrEnum):
     """Mosyle User Operation Enumerations"""
 
     SAVE = "save"
     DELETE = "delete"
     ASSIGN_DEVICE = "assign_device"
-
-    def __str__(self) -> str:
-        return str.__str__(self)

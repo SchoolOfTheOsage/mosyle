@@ -1,8 +1,8 @@
 """Mosyle Device Column Enumerations"""
-from enum import Enum
+from ..str_enum import StrEnum
 
 
-class DeviceColumn(str, Enum):
+class DeviceColumn(StrEnum):
     """Mosyle Device Column Enumerations"""
 
     DEVICE_UDID = "deviceudid"
@@ -73,6 +73,3 @@ class DeviceColumn(str, Enum):
     LOCATION = "location"
     LATITUDE = "latitude"
     LONGITUDE = "longitude"
-
-    def __str__(self) -> str:
-        return str.__str__(self)

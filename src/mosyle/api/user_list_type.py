@@ -1,8 +1,8 @@
 """Mosyle User List Type Enumerations"""
-from enum import Enum
+from ..str_enum import StrEnum
 
 
-class UserListType(str, Enum):
+class UserListType(StrEnum):
     """Mosyle User List Type Enumerations"""
 
     STUDENT = "STUDENT"
@@ -12,6 +12,3 @@ class UserListType(str, Enum):
     ADMIN = "ADMIN"
     ACCOUNT_ADMIN = "ACCOUNT_ADMIN"
     DISTRICT_ADMIN = "DISTRICT_ADMIN"
-
-    def __str__(self) -> str:
-        return str.__str__(self)
