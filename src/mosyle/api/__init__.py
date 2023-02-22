@@ -144,7 +144,7 @@ class Api:
             options["DisallowProximitySetup"] = disallow_proximity_setup
         if revoke_vpp_license is not None:
             options["RevokeVPPLicenses"] = revoke_vpp_license
-        if len(options) > 0:
+        if options:
             element["options"] = options
 
         payload = {
@@ -219,7 +219,7 @@ class Api:
         payload: dict[str, object] = {
             "accessToken": self.access_token,
         }
-        if len(options) > 0:
+        if options:
             payload["options"] = options
 
         return requests.post(
@@ -338,7 +338,7 @@ class Api:
         payload: dict[str, object] = {
             "accessToken": self.access_token,
         }
-        if len(options) > 0:
+        if options:
             payload["options"] = options
         return requests.post(
             url,
@@ -378,10 +378,7 @@ class Api:
         if uuid is not None:
             payload["uuid"] = uuid
 
-        if operation == AccountOperation.REQUEST:
-            auth = self.auth
-        else:
-            auth = None
+        auth = self.auth if operation == AccountOperation.REQUEST else None
 
         return requests.post(
             url,
@@ -510,7 +507,7 @@ class Api:
         }
         if page is not None:
             payload["page"] = page
-        if len(filter_options) > 0:
+        if filter_options:
             payload["filter_options"] = filter_options
 
         return requests.post(
