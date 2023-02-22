@@ -338,8 +338,10 @@ class Api:
         payload: dict[str, object] = {
             "accessToken": self.access_token,
         }
+
         if options:
             payload["options"] = options
+
         return requests.post(
             url,
             json=payload,
@@ -403,8 +405,10 @@ class Api:
             "wifimac": wifimac,
             "serialnumber": serialnumber,
         }
+
         if model is not None:
             element["model"] = model
+
         payload = {
             "accessToken": self.access_token,
             "elements": [element],
@@ -502,11 +506,14 @@ class Api:
             filter_options["end_date"] = end_date
         if id_users is not None:
             filter_options["idusers"] = id_users
+
         payload: dict[str, object] = {
             "accessToken": self.access_token,
         }
+
         if page is not None:
             payload["page"] = page
+
         if filter_options:
             payload["filter_options"] = filter_options
 
