@@ -6,4 +6,3 @@
 ## Create a Demo account for testing purposes
 
 [Mosyle Education Sign-up](https://myschool.mosyle.com/signup/)
-
