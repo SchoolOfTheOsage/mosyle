@@ -10,12 +10,9 @@
 
 ## Why?
 
-
 ## What?
 
-
 ## How?
-
 
 ## Installation
 
