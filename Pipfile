@@ -5,7 +5,8 @@ name = "pypi"
 
 [packages]
 requests = "*"
-ratelimit = "*"
+setuptools-scm = "*"
+setuptools = "*"
 
 [dev-packages]
 black = "*"
