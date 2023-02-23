@@ -53,7 +53,7 @@ readme = {file="readme.md", content_type="text/markdown"}
 #version = {attr = "mosyle._version:__version__"}
 
 [tool.setuptools_scm]
-write_to = "src/mosyle/_version.py"
+write_to = "src/mosyle/__version__.py"
 
 [tool.distutils.bdist_wheel]
 universal = true
