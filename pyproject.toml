@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2", "wheel>=0.31.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,9 +7,9 @@ name = "mosyle"
 authors = [
     {name = "Nathan McGuire", email = "mcguiren@osageschools.org" } 
 ]
-maintainers = [
-    {name = "Nathan McGuire", email = "mcguiren@osageschools.org" }
-]
+#maintainers = [
+#    {name = "Nathan McGuire", email = "mcguiren@osageschools.org" }
+#]
 description = "Mosyle Manager Python API"
 requires-python = ">=3.7"
 keywords = ["python", "api", "apple", "mdm", "mosyle"]
@@ -19,19 +19,17 @@ classifiers = [
     "Intended Audience :: System Administrators",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3 :: Only",
 ]
 dependencies = [
     "requests",
     'importlib-metadata; python_version<"3.8"',
 ]
 
-dynamic = ["readme","version"]
+dynamic = ["version"]
+
+[project.readme]
+file = "readme.md"
+content-type = "text/markdown"
 
 [project.optional-dependencies]
 dev = ["check-manifest"]
@@ -47,10 +45,6 @@ mosyle = "mosyle.__main__:main"
 
 [tool.setuptools.packages.find]
 where = ['src']
-
-[tool.setuptools.dynamic]
-readme = {file="readme.md", content_type="text/markdown"}
-#version = {attr = "mosyle._version:__version__"}
 
 [tool.setuptools_scm]
 write_to = "src/mosyle/__version__.py"
