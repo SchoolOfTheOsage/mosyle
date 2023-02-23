@@ -7,6 +7,7 @@ name = "pypi"
 requests = "*"
 setuptools-scm = "*"
 setuptools = "*"
+build = "*"
 
 [dev-packages]
 black = "*"
