@@ -1,37 +1,23 @@
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
 [project]
-name = "mosyle" 
-version = "0.0.4"
-description = "Mosyle Manager Python API"
-readme = "readme.md"
-requires-python = ">=3.7"
-license = {file = "license.md"}
-keywords = ["python", "api", "apple", "mdm", "mosyle"]    # Optional
+name = "mosyle"
 authors = [
-    {name = "Nathan McGuire", email = "mcguiren@osageschools.org" } # Optional
+    {name = "Nathan McGuire", email = "mcguiren@osageschools.org" } 
 ]
 maintainers = [
-    {name = "Nathan McGuire", email = "mcguiren@osageschools.org" } # Optional
+    {name = "Nathan McGuire", email = "mcguiren@osageschools.org" }
 ]
-
-# Classifiers help users find your project by categorizing it.
-#
-# For a list of valid classifiers, see https://pypi.org/classifiers/
-classifiers = [    # Optional
-    # How mature is this project? Common values are
-    #     3 - Alpha
-    #     4 - Beta
-    #     5 - Production/Stable
+description = "Mosyle Manager Python API"
+requires-python = ">=3.7"
+keywords = ["python", "api", "apple", "mdm", "mosyle"]
+#license = "MIT"
+classifiers = [
     "Development Status :: 1 - Planning",
-
-    # Indicate who your project is intended for
     "Intended Audience :: System Administrators",
-
-    # Pick your license as you wish
     "License :: OSI Approved :: MIT License",
-
-    # Specify the Python versions you support here. In particular, ensure
-    # that you indicate you support Python 3. These classifiers are *not*
-    # checked by "pip install". See instead "python_requires" below.
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
@@ -40,62 +26,34 @@ classifiers = [    # Optional
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3 :: Only",
 ]
-
-# This field lists other packages that your project depends on to run.
-# Any package you put here will be installed by pip when your project is
-# installed, so they must be valid existing projects.
-#
-# For an analysis of this field vs pip's requirements files see:
-# https://packaging.python.org/discussions/install-requires-vs-requirements/
-dependencies = [ # Optional
-    "requests"
+dependencies = [
+    "requests",
+    'importlib-metadata; python_version<"3.8"',
 ]
 
-# List additional groups of dependencies here (e.g. development
-# dependencies). Users will be able to install these using the "extras"
-# syntax, for example:
-#
-#     $ pip install sampleproject[dev]
-#
-# Similar to `dependencies` above, these must be valid existing
-# projects.
-[project.optional-dependencies] # Optional
+dynamic = ["readme","version"]
+
+[project.optional-dependencies]
 dev = ["check-manifest"]
 test = ["coverage"]
 
-# List URLs that are relevant to your project
-#
-# This field corresponds to the "Project-URL" and "Home-Page" metadata fields:
-# https://packaging.python.org/specifications/core-metadata/#project-url-multiple-use
-# https://packaging.python.org/specifications/core-metadata/#home-page-optional
-#
-# Examples listed include a pattern for specifying where the package tracks
-# issues, where the source is hosted, where to say thanks to the package
-# maintainers, and where to support the project financially. The key is
-# what's used to render the link text on PyPI.
-[project.urls]    # Optional
+[project.scripts]
+mosyle = "mosyle.__main__:main"
+
+[project.urls]
 "Github" = "https://github.com/SchoolOfTheOsage/mosyle"
-#"Bug Reports" = "https://github.com/pypa/sampleproject/issues"
-#"Funding" = "https://donate.pypi.org"
-#"Say Thanks!" = "http://saythanks.io/to/example"
-#"Source" = "https://github.com/pypa/sampleproject/"
+"Bug Reports" = "https://github.com/SchoolOfTheOsage/mosyle/issues"
+"Source" = "https://github.com/SchoolOfTheOsage/mosyle"
 
-# The following would provide a command line executable called `sample`
-# which executes the function `main` from this package when invoked.
-[project.scripts]    # Optional
-#sample = "sample:main"
+[tool.setuptools.packages.find]
+where = ['src']
 
-# This is configuration specific to the `setuptools` build backend.
-# If you are using a different build backend, you will need to change this.
-[tool.setuptools]
-# If there are data files included in your packages that need to be
-# installed, specify them here.
-#package-data = { "sample" = ["*.dat"] }
-
-[build-system]
-# These are the assumed default build requirements from pip:
-# https://pip.pypa.io/en/stable/reference/pip/#pep-517-and-518-support
-requires = ["setuptools>=43.0.0", "wheel", "setuptools_scm[toml]>=6.2"]
-build-backend = "setuptools.build_meta"
+[tool.setuptools.dynamic]
+readme = {file="readme.md", content_type="text/markdown"}
+#version = {attr = "mosyle._version:__version__"}
 
 [tool.setuptools_scm]
+write_to = "src/mosyle/_version.py"
+
+[tool.distutils.bdist_wheel]
+universal = true
