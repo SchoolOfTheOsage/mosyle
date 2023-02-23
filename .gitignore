@@ -152,3 +152,4 @@ cython_debug/
 #.idea/
 settings.json
 .DS_Store
+src/mosyle/__version__.py
