@@ -153,3 +153,4 @@ cython_debug/
 settings.json
 .DS_Store
 src/mosyle/__version__.py
+src/mosyle/__version__.py
