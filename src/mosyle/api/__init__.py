@@ -33,11 +33,38 @@ class Api:
         username: str | None = None,
         password: str | None = None,
     ):
-        self.access_token = access_token
+        self.access_token: str = access_token
+        self.auth: HTTPBasicAuth | None = None
         if username is not None and password is not None:
             self.auth = HTTPBasicAuth(username, password)
-        else:
-            self.auth = None
+
+    def post(
+        self,
+        endpoint: str,
+        keys: dict[str, object] | None = None,
+        options: dict[str, DevicePlatform | list[str] | int | list[DeviceColumn]]
+        | None = None,
+        elements: list[dict[str, object | list[str]]] | None = None,
+        filter_options: dict[str, object] | None = None,
+    ) -> dict[str, object] | list[object]:
+        """Post Request"""
+
+        payload = keys if keys is not None else {}
+        payload["accessToken"] = self.access_token
+        if options is not None:
+            payload["options"] = options
+        if elements is not None:
+            payload["elements"] = elements
+        if filter_options is not None:
+            payload["filterOptions"] = filter_options
+
+        return requests.post(
+            f"{REQUEST_URL}/{endpoint}",
+            json=payload,
+            headers=REQUEST_HEADERS,
+            timeout=REQUEST_TIMEOUT,
+            auth=self.auth,
+        ).json()
 
     # pylint: disable=too-many-arguments
     def list_devices(
@@ -50,8 +77,6 @@ class Api:
         specific_columns: list[DeviceColumn] | None = None,
     ):
         """List Devices"""
-        url = f"{REQUEST_URL}/listdevices"
-
         options: dict[str, DevicePlatform | list[str] | int | list[DeviceColumn]] = {
             "os": device_platform,
         }
@@ -66,17 +91,7 @@ class Api:
         if specific_columns is not None:
             options["specific_columns"] = specific_columns
 
-        payload: dict[str, object] = {
-            "accessToken": self.access_token,
-            "options": options,
-        }
-
-        return requests.post(
-            url,
-            json=payload,
-            headers=REQUEST_HEADERS,
-            timeout=REQUEST_TIMEOUT,
-        ).json()
+        return self.post("listdevices", options=options)
 
     def devices(
         self,
@@ -87,7 +102,6 @@ class Api:
         lock: str | None = None,
     ):
         """Update Device Attributes"""
-        url = f"{REQUEST_URL}/devices"
 
         element: dict[str, object] = {
             "serialnumber": serial_number,
@@ -101,18 +115,7 @@ class Api:
         if lock is not None:
             element["lock"] = lock
 
-        payload = {
-            "accessToken": self.access_token,
-            "elements": [element],
-        }
-
-        requests.post(
-            url,
-            json=payload,
-            headers=REQUEST_HEADERS,
-            timeout=REQUEST_TIMEOUT,
-            auth=self.auth,
-        ).json()
+        return self.post("devices", elements=[element])
 
     def bulk_operations(
         self,
@@ -125,7 +128,6 @@ class Api:
         revoke_vpp_license: bool | None = None,
     ) -> dict[str, object]:
         """Device Bulk Operations"""
-        url = f"{REQUEST_URL}/bulkops"
 
         element: dict[str, object] = {
             "operation": operation,
@@ -135,7 +137,7 @@ class Api:
         if group_ids is not None:
             element["groups"] = group_ids
 
-        options: dict[str, object] = {}
+        options: dict[str, str | bool] = {}
         if pin_code is not None:
             options["pin_code"] = pin_code
         if preserve_data_plan is not None:
@@ -147,18 +149,7 @@ class Api:
         if options:
             element["options"] = options
 
-        payload = {
-            "accessToken": self.access_token,
-            "elements": [element],
-        }
-
-        return requests.post(
-            url,
-            json=payload,
-            headers=REQUEST_HEADERS,
-            timeout=REQUEST_TIMEOUT,
-            auth=self.auth,
-        ).json()
+        return self.post("bulkops", elements=[element])
 
     def lost_mode(
         self,
@@ -170,7 +161,6 @@ class Api:
         footnote: str | None = None,
     ):
         """Device Lost Mode Operations"""
-        url = f"{REQUEST_URL}/lostmode"
 
         element: dict[str, object] = {
             "operation": operation,
@@ -186,18 +176,7 @@ class Api:
         if footnote is not None:
             element["footnote"] = footnote
 
-        payload = {
-            "accessToken": self.access_token,
-            "elements": [element],
-        }
-
-        return requests.post(
-            url,
-            json=payload,
-            headers=REQUEST_HEADERS,
-            timeout=REQUEST_TIMEOUT,
-            auth=self.auth,
-        ).json()
+        return self.post("lostmode", elements=[element])
 
     def list_users(
         self,
@@ -206,7 +185,6 @@ class Api:
         types: list[UserListType] | None = None,
     ):
         """List Users"""
-        url = f"{REQUEST_URL}/listusers"
 
         options: dict[str, object] = {}
         if page is not None:
@@ -216,18 +194,7 @@ class Api:
         if types is not None:
             options["types"] = types
 
-        payload: dict[str, object] = {
-            "accessToken": self.access_token,
-        }
-        if options:
-            payload["options"] = options
-
-        return requests.post(
-            url,
-            json=payload,
-            headers=REQUEST_HEADERS,
-            timeout=REQUEST_TIMEOUT,
-        ).json()
+        return self.post("listusers", options=options)
 
     def users(
         self,
@@ -243,7 +210,6 @@ class Api:
         serial_number: str | None = None,
     ):
         """User Operations"""
-        url = f"{REQUEST_URL}/users"
 
         element: dict[str, object] = {
             "id": user_id,
@@ -264,18 +230,7 @@ class Api:
         if serial_number is not None:
             element["serial_number"] = serial_number
 
-        payload = {
-            "accessToken": self.access_token,
-            "elements": [element],
-        }
-
-        return requests.post(
-            url,
-            json=payload,
-            headers=REQUEST_HEADERS,
-            timeout=REQUEST_TIMEOUT,
-            auth=self.auth,
-        ).json()
+        return self.post("users", elements=[element])
 
     def classes(
         self,
@@ -291,7 +246,6 @@ class Api:
         platform: ClassPlatform | None = None,
     ):
         """Class Operations"""
-        url = f"{REQUEST_URL}/classes"
 
         element: dict[str, object] = {
             "id": class_id,
@@ -309,18 +263,8 @@ class Api:
             element["coordinators"] = coordinators
         if platform is not None:
             element["platform"] = platform
-        payload = {
-            "accessToken": self.access_token,
-            "elements": [element],
-        }
 
-        return requests.post(
-            url,
-            json=payload,
-            headers=REQUEST_HEADERS,
-            timeout=REQUEST_TIMEOUT,
-            auth=self.auth,
-        ).json()
+        return self.post("classes", elements=[element])
 
     def list_classes(
         self,
@@ -328,26 +272,14 @@ class Api:
         specific_columns: list[ClassColumn] | None = None,
     ):
         """List Classes"""
-        url = f"{REQUEST_URL}/listclasses"
 
         options = {}
         if page is not None:
             options["page"] = page
         if specific_columns is not None:
             options["specific_columns"] = specific_columns
-        payload: dict[str, object] = {
-            "accessToken": self.access_token,
-        }
 
-        if options:
-            payload["options"] = options
-
-        return requests.post(
-            url,
-            json=payload,
-            headers=REQUEST_HEADERS,
-            timeout=REQUEST_TIMEOUT,
-        ).json()
+        return self.post("listclasses", options=options)
 
     def accounts(
         self,
@@ -360,35 +292,24 @@ class Api:
         uuid: str | None = None,
     ):
         """Account Operations"""
-        url = f"{REQUEST_URL}/accounts"
 
-        payload = {
-            "accessToken": self.access_token,
-        }
+        keys = {}
         if operation is not None:
-            payload["operation"] = operation
+            keys["operation"] = operation
         if school_name is not None:
-            payload["school_name"] = school_name
+            keys["school_name"] = school_name
         if school_address is not None:
-            payload["school_address"] = school_address
+            keys["school_address"] = school_address
         if leader_name is not None:
-            payload["leader_name"] = leader_name
+            keys["leader_name"] = leader_name
         if leader_email is not None:
-            payload["leader_email"] = leader_email
+            keys["leader_email"] = leader_email
         if leader_id is not None:
-            payload["leader_id"] = leader_id
+            keys["leader_id"] = leader_id
         if uuid is not None:
-            payload["uuid"] = uuid
+            keys["uuid"] = uuid
 
-        auth = self.auth if operation == AccountOperation.REQUEST else None
-
-        return requests.post(
-            url,
-            json=payload,
-            headers=REQUEST_HEADERS,
-            timeout=REQUEST_TIMEOUT,
-            auth=auth,
-        ).json()
+        return self.post("accounts", keys=keys)
 
     def cisco_ise(
         self,
@@ -398,7 +319,6 @@ class Api:
         model: str | None = None,
     ):
         """Cisco ISE Operations"""
-        url = f"{REQUEST_URL}/ciscoise"
 
         element: dict[str, object] = {
             "action": action,
@@ -409,35 +329,16 @@ class Api:
         if model is not None:
             element["model"] = model
 
-        payload = {
-            "accessToken": self.access_token,
-            "elements": [element],
-        }
-
-        return requests.post(
-            url,
-            json=payload,
-            headers=REQUEST_HEADERS,
-            timeout=REQUEST_TIMEOUT,
-            auth=self.auth,
-        ).json()
+        return self.post("ciscoise", elements=[element])
 
     def get_cisco_ise(self, paging: int):
         """Get Cisco ISE"""
-        url = f"{REQUEST_URL}/getciscoise"
 
-        payload = {
-            "accessToken": self.access_token,
+        keys = {
             "paging": paging,
         }
 
-        return requests.post(
-            url,
-            json=payload,
-            headers=REQUEST_HEADERS,
-            timeout=REQUEST_TIMEOUT,
-            auth=self.auth,
-        ).json()
+        return self.post("getciscoise", keys=keys)
 
     def list_device_groups(
         self,
@@ -445,7 +346,6 @@ class Api:
         page: int | None = None,
     ) -> dict[str, object]:
         """List Device Groups"""
-        url = f"{REQUEST_URL}/listdevicegroups"
 
         options: dict[str, object] = {
             "os": device_platform,
@@ -454,40 +354,19 @@ class Api:
         if page is not None:
             options["page"] = page
 
-        payload = {
-            "accessToken": self.access_token,
-            "options": options,
-        }
-
-        return requests.post(
-            url,
-            json=payload,
-            headers=REQUEST_HEADERS,
-            timeout=REQUEST_TIMEOUT,
-        ).json()
+        return self.post("listdevicegroups", options=options)
 
     def list_devices_by_group(
         self,
         device_group_id: str,
     ) -> dict[str, object]:
         """List Devices By Group"""
-        url = f"{REQUEST_URL}/listdevicesbygroup"
 
         options = {
             "iddevicegroup": device_group_id,
         }
 
-        payload = {
-            "accessToken": self.access_token,
-            "options": options,
-        }
-
-        return requests.post(
-            url,
-            json=payload,
-            headers=REQUEST_HEADERS,
-            timeout=REQUEST_TIMEOUT,
-        ).json()
+        return self.post("listdevicesbygroup", options=options)
 
     def adminlogs(
         self,
@@ -497,8 +376,6 @@ class Api:
         id_users: list[str] | None = None,
     ):
         """Administrative Action Logs"""
-        url = f"{REQUEST_URL}/actions"
-
         filter_options: dict[str, object] = {}
         if start_date is not None:
             filter_options["start_date"] = start_date
@@ -507,19 +384,9 @@ class Api:
         if id_users is not None:
             filter_options["idusers"] = id_users
 
-        payload: dict[str, object] = {
-            "accessToken": self.access_token,
-        }
+        keys: dict[str, object] = {}
 
         if page is not None:
-            payload["page"] = page
+            keys["page"] = page
 
-        if filter_options:
-            payload["filter_options"] = filter_options
-
-        return requests.post(
-            url,
-            json=payload,
-            headers=REQUEST_HEADERS,
-            timeout=REQUEST_TIMEOUT,
-        ).json()
+        return self.post("actions", keys=keys, filter_options=filter_options)
