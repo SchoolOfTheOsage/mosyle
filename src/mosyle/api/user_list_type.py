@@ -1,4 +1,4 @@
-"""Mosyle User List Type Enumerations"""
+"""Mosyle Manager Python API - API - User List Type"""
 from ..str_enum import StrEnum
 
 

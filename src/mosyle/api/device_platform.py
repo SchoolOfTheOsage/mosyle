@@ -1,4 +1,4 @@
-"""Mosyle Device Platform Enumerations"""
+"""Mosyle Manager Python API - API - Device Platform"""
 from ..str_enum import StrEnum
 
 

@@ -1,4 +1,4 @@
-"""Mosyle Class Platform Enumerations"""
+"""Mosyle Manager Python API - API - Class Platform"""
 from ..str_enum import StrEnum
 
 

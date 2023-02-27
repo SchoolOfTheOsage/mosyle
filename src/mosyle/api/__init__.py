@@ -1,4 +1,4 @@
-"""Mosyle API"""
+"""Mosyle Manager Python API - API"""
 
 import requests
 from requests.auth import HTTPBasicAuth

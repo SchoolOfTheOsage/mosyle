@@ -1,3 +1,4 @@
+"""Mosyle Manager Python API - Main"""
 # call package mosyle __main__.py
 # python mosyle
 #

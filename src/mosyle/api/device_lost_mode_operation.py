@@ -1,4 +1,4 @@
-"""Mosyle Device Lost Mode Operations"""
+"""Mosyle Manager Python API - API - Device Lost Mode Operation"""
 from ..str_enum import StrEnum
 
 

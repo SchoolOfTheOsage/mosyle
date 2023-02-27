@@ -1,4 +1,4 @@
-"""Mosyle User Operation Enumerations"""
+"""Mosyle Manager Python API - API - User Operation"""
 from ..str_enum import StrEnum
 
 

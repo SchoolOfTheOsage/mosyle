@@ -1,4 +1,4 @@
-"""Mosyle Cisco Ise Operation Enumerations"""
+"""Mosyle Manager Python API - API - Cisco Ise Operation"""
 from ..str_enum import StrEnum
 
 

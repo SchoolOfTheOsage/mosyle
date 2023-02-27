@@ -1,4 +1,4 @@
-"""String Enumeration"""
+"""Mosyle Manager Python API - String Enumeration"""
 from enum import Enum
 
 

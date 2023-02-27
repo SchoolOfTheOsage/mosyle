@@ -1,4 +1,4 @@
-"""Mosyle User Column Enumerations"""
+"""Mosyle Manager Python API - API - User Column"""
 from ..str_enum import StrEnum
 
 
