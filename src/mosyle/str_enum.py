@@ -6,5 +6,5 @@ class StrEnum(str, Enum):
     """String Enumeration"""
 
     def __str__(self) -> str:
-        """String Duck Type"""
+        """String Representation"""
         return str.__str__(self)
