@@ -12,6 +12,7 @@ from .device_column import DeviceColumn
 from .device_lost_mode_operation import DeviceLostModeOperation
 from .device_operation import DeviceOperation
 from .device_platform import DevicePlatform
+from .endpoint import Endpoint
 from .user_column import UserColumn
 from .user_list_type import UserListType
 from .user_operation import UserOperation
@@ -91,7 +92,7 @@ class Api:
         if specific_columns is not None:
             options["specific_columns"] = specific_columns
 
-        return self.post("listdevices", options=options)
+        return self.post(Endpoint.LIST_DEVICES, options=options)
 
     def devices(
         self,
@@ -115,7 +116,7 @@ class Api:
         if lock is not None:
             element["lock"] = lock
 
-        return self.post("devices", elements=[element])
+        return self.post(Endpoint.DEVICES, elements=[element])
 
     def bulk_operations(
         self,
@@ -149,7 +150,7 @@ class Api:
         if options:
             element["options"] = options
 
-        return self.post("bulkops", elements=[element])
+        return self.post(Endpoint.BULK_OPERATIONS, elements=[element])
 
     def lost_mode(
         self,
@@ -176,7 +177,7 @@ class Api:
         if footnote is not None:
             element["footnote"] = footnote
 
-        return self.post("lostmode", elements=[element])
+        return self.post(Endpoint.LOST_MODE, elements=[element])
 
     def list_users(
         self,
@@ -194,7 +195,7 @@ class Api:
         if types is not None:
             options["types"] = types
 
-        return self.post("listusers", options=options)
+        return self.post(Endpoint.LIST_USERS, options=options)
 
     def users(
         self,
@@ -230,7 +231,7 @@ class Api:
         if serial_number is not None:
             element["serial_number"] = serial_number
 
-        return self.post("users", elements=[element])
+        return self.post(Endpoint.USERS, elements=[element])
 
     def classes(
         self,
@@ -264,7 +265,7 @@ class Api:
         if platform is not None:
             element["platform"] = platform
 
-        return self.post("classes", elements=[element])
+        return self.post(Endpoint.CLASSES, elements=[element])
 
     def list_classes(
         self,
@@ -279,7 +280,7 @@ class Api:
         if specific_columns is not None:
             options["specific_columns"] = specific_columns
 
-        return self.post("listclasses", options=options)
+        return self.post(Endpoint.LIST_CLASSES, options=options)
 
     def accounts(
         self,
@@ -309,7 +310,7 @@ class Api:
         if uuid is not None:
             keys["uuid"] = uuid
 
-        return self.post("accounts", keys=keys)
+        return self.post(Endpoint.ACCOUNTS, keys=keys)
 
     def cisco_ise(
         self,
@@ -329,7 +330,7 @@ class Api:
         if model is not None:
             element["model"] = model
 
-        return self.post("ciscoise", elements=[element])
+        return self.post(Endpoint.CISCO_ISE, elements=[element])
 
     def get_cisco_ise(self, paging: int):
         """Get Cisco ISE"""
@@ -338,7 +339,7 @@ class Api:
             "paging": paging,
         }
 
-        return self.post("getciscoise", keys=keys)
+        return self.post(Endpoint.GET_CISCO_ISE, keys=keys)
 
     def list_device_groups(
         self,
@@ -354,7 +355,7 @@ class Api:
         if page is not None:
             options["page"] = page
 
-        return self.post("listdevicegroups", options=options)
+        return self.post(Endpoint.LIST_DEVICE_GROUPS, options=options)
 
     def list_devices_by_group(
         self,
@@ -366,7 +367,7 @@ class Api:
             "iddevicegroup": device_group_id,
         }
 
-        return self.post("listdevicesbygroup", options=options)
+        return self.post(Endpoint.LIST_DEVICES_BY_GROUP, options=options)
 
     def adminlogs(
         self,
@@ -389,4 +390,4 @@ class Api:
         if page is not None:
             keys["page"] = page
 
-        return self.post("actions", keys=keys, filter_options=filter_options)
+        return self.post(Endpoint.ACTIONS, keys=keys, filter_options=filter_options)
