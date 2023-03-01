@@ -35,6 +35,7 @@
         "bulkops",
         "ciscoise",
         "cmdclass",
+        "Dacite",
         "deviceudid",
         "getciscoise",
         "idclass",
