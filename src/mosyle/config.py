@@ -69,7 +69,7 @@ class Config:
     @property
     def password_obfuscated(self) -> str:
         """Get API Password Obfuscated"""
-        return "*" * len(self.password)
+        return "*******"
 
     @password_obfuscated.setter
     def password_obfuscated(self, password: str):
