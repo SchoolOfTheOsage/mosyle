@@ -10,6 +10,7 @@ setuptools = "*"
 build = "*"
 click = "*"
 configparser = "*"
+mosyle = {editable = true, path = "."}
 
 [dev-packages]
 black = "*"
