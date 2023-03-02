@@ -1,7 +1,10 @@
 """Mosyle Manager Python API - Cisco ISE"""
 from dataclasses import dataclass
 
+import click
+
 from .api_client import ApiClient
+from .click_order_commands import OrderCommands
 from .str_enum import StrEnum
 
 
@@ -51,3 +54,13 @@ class CiscoIse:
             element["model"] = model
 
         # return self.post(Endpoint.CISCO_ISE, elements=[element])
+
+
+class CiscoIseCli:
+    "Cisco ISE CLI"
+
+    @staticmethod
+    @click.group(cls=OrderCommands)
+    def ciscoise():
+        """Cisco ISE"""
+        click.echo("Not implemented")

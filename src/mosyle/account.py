@@ -1,7 +1,10 @@
 """Mosyle Manager Python API - Account"""
 from dataclasses import dataclass
 
+import click
+
 from .api_client import ApiClient
+from .click_order_commands import OrderCommands
 from .str_enum import StrEnum
 
 
@@ -51,3 +54,13 @@ class Account:
             keys["uuid"] = uuid
 
         # return self.post(Endpoint.ACCOUNTS, keys=keys)
+
+
+class AccountCli:
+    "Account CLI"
+
+    @staticmethod
+    @click.group(cls=OrderCommands)
+    def account():
+        """Account"""
+        click.echo("Not implemented")

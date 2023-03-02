@@ -2,7 +2,10 @@
 import dataclasses
 from dataclasses import dataclass
 
+import click
+
 from .api_client import ApiClient
+from .click_order_commands import OrderCommands
 from .str_enum import StrEnum
 
 
@@ -481,3 +484,13 @@ class Device:
             LostModeOperation.REQUEST_LOCATION,
             device_udids=[self.device_uuid],
         )
+
+
+class DeviceCli:
+    "Device CLI"
+
+    @staticmethod
+    @click.group(cls=OrderCommands)
+    def device():
+        """Device"""
+        click.echo("Not implemented")

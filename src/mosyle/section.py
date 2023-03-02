@@ -1,7 +1,10 @@
 """Mosyle Manager Python API - Section (Class)"""
 from dataclasses import dataclass
 
+import click
+
 from .api_client import ApiClient
+from .click_order_commands import OrderCommands
 from .str_enum import StrEnum
 
 
@@ -91,3 +94,41 @@ class Section:
             element["platform"] = platform
 
         # return self.post(Endpoint.CLASSES, elements=[element])
+
+
+class SectionCli:
+    """Section CLI"""
+
+    @click.group(cls=OrderCommands)
+    @staticmethod
+    def section():
+        """Sections"""
+        click.echo("Not Implemented")
+
+    @section.command()
+    @staticmethod
+    def create():
+        """Create"""
+        click.echo("Not Implemented")
+
+    @section.command()
+    @staticmethod
+    def read():
+        """Read"""
+        click.echo("Not Implemented")
+
+    @section.command()
+    @staticmethod
+    def update():
+        """Update"""
+        click.echo("Not Implemented")
+
+    @section.command()
+    @staticmethod
+    def delete():
+        """Delete"""
+        click.echo("Not Implemented")
+
+
+if __name__ == "__main__":
+    SectionCli.section()

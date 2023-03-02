@@ -2,6 +2,8 @@
 import configparser
 import os
 
+import click
+
 
 class Config:
     """Configuration"""
@@ -76,3 +78,41 @@ class Config:
         """Set API Password Obfuscated"""
         if password != self.password_obfuscated:
             self.password = password
+
+
+CONFIG = Config()
+
+
+class ConfigCli:
+    """Configuration CLI"""
+
+    @staticmethod
+    @click.group()
+    @click.option(
+        "-t",
+        "--token",
+        prompt="API Token",
+        default=CONFIG.token_obfuscated,
+        help="API Token",
+    )
+    @click.option(
+        "-u",
+        "--username",
+        prompt="Username",
+        default=CONFIG.username,
+        help="Admin Email",
+    )
+    @click.password_option(
+        "-p",
+        "--password",
+        prompt="Password",
+        default=CONFIG.password_obfuscated,
+        help="Admin Password",
+        hide_input=True,
+        confirmation_prompt=False,
+    )
+    def config(token: str, username: str, password: str):
+        """Configuration"""
+        CONFIG.token_obfuscated = token
+        CONFIG.username = username
+        CONFIG.password_obfuscated = password

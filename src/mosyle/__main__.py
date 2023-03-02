@@ -4,93 +4,30 @@ import click
 
 import mosyle
 
-from .config import Config
+from .account import AccountCli
+from .action import ActionCli
+from .cisco_ise import CiscoIseCli
+from .click_order_commands import OrderCommands
+from .config import ConfigCli
+from .device import DeviceCli
+from .section import SectionCli
+from .user import UserCli
 
-CONFIG = Config()
 
-
-# Main
-@click.group()
+@click.group(cls=OrderCommands)
 @click.version_option(mosyle.__version__)
-def cli():
-    """Mosyle Manager CLI"""
+def main():
+    """Mosyle Manager Python API"""
 
 
-# Configuration
-@cli.command()
-@click.option(
-    "-t",
-    "--token",
-    prompt="API Token",
-    default=CONFIG.token_obfuscated,
-    help="API Token",
-)
-@click.option(
-    "-u",
-    "--username",
-    prompt="Username",
-    default=CONFIG.username,
-    help="Admin Email",
-)
-@click.password_option(
-    "-p",
-    "--password",
-    prompt="Password",
-    default=CONFIG.password_obfuscated,
-    help="Admin Password",
-    hide_input=True,
-    confirmation_prompt=False,
-)
-def config(token: str, username: str, password: str):
-    """Configuration Setup"""
-    CONFIG.token_obfuscated = token
-    CONFIG.username = username
-    CONFIG.password_obfuscated = password
-
-
-# Account
-@cli.command()
-def account():
-    """Manage Accounts"""
-    click.echo("Mosyle Manager Accounts")
-
-
-# Action
-
-
-@cli.command()
-def action():
-    """Manage Actions"""
-    click.echo("Mosyle Manager Actions")
-
-
-# Cisco ISE
-@cli.command()
-def ciscoise():
-    """Manage Cisco ISE"""
-    click.echo("Mosyle Manager Cisco ISE")
-
-
-# Device
-@cli.command()
-def device():
-    """Manage Devices"""
-    click.echo("Mosyle Manager Devices")
-
-
-# Section
-@cli.command()
-def section():
-    """Manage Classes"""
-    click.echo("Mosyle Manager Classes")
-
-
-# User
-@cli.command()
-def user():
-    """Manage Users"""
-    click.echo("Mosyle Manager Users")
+main.add_command(ConfigCli.config)
+main.add_command(AccountCli.account)
+main.add_command(ActionCli.action)
+main.add_command(CiscoIseCli.ciscoise)
+main.add_command(DeviceCli.device)
+main.add_command(SectionCli.section)
+main.add_command(UserCli.user)
 
 
 if __name__ == "__main__":
-    cli()
+    main()
