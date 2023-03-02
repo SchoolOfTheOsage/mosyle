@@ -1,7 +1,10 @@
 """Mosyle Manager Python API - Device"""
 from dataclasses import dataclass
 
+import click
+
 from .api_client import ApiClient
+from .click_order_commands import OrderCommands
 from .str_enum import StrEnum
 
 
@@ -110,3 +113,13 @@ class User:
             element["serial_number"] = serial_number
 
         # return self.post(Endpoint.USERS, elements=[element])
+
+
+class UserCli:
+    "User CLI"
+
+    @staticmethod
+    @click.group()
+    def user():
+        """User"""
+        click.echo("Not implemented")
