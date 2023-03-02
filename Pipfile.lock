@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "481e35cc68671e553368e622da5c5f06998639606c47af0de4e31c227dada821"
+            "sha256": "fe528028c1c20887bb5ffd1182c504cb45f8aa2aa14d60335c66d6b6d351f4a2"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -148,6 +148,10 @@
             ],
             "markers": "python_version >= '3.5'",
             "version": "==3.4"
+        },
+        "mosyle": {
+            "editable": true,
+            "path": "."
         },
         "packaging": {
             "hashes": [
