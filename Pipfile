@@ -8,6 +8,8 @@ requests = "*"
 setuptools-scm = "*"
 setuptools = "*"
 build = "*"
+click = "*"
+configparser = "*"
 
 [dev-packages]
 black = "*"
