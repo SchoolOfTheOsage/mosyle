@@ -1,0 +1,2140 @@
+{
+	"info": {
+		"_postman_id": "917e6616-6316-4018-8084-275e04ac06a8",
+		"name": "Mosyle Manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Devices",
+			"item": [
+				{
+					"name": "List Devices",
+					"_postman_id": "b03bffd2-ebb7-47e9-8f69-45cdc2acae52",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"options\": {\n        \"os\": \"ios\"\n    }\n}",
+							"options": {}
+						},
+						"url": "{{url_base}}/listdevices",
+						"description": "You will hit the endpoint /listdevices and can send parameters to filter your request for the specific info you want to receive in your response."
+					},
+					"response": [
+						{
+							"id": "9846fe92-7f48-4e6d-9868-983a81bb656a",
+							"name": "Get Devices",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"api-access-token\",\n    \"options\": {\n        \"os\": \"ios\",\n        \"specific_columns\": [\n            \"device_name\",\n            \"deviceudid\"\n        ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://managerapi.mosyle.com/v2/listdevices"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 07 Feb 2020 19:00:47 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"status\": \"OK\",\n    \"response\": {\n        \"devices\": [\n            {\n                \"deviceudid\": \"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\n                \"device_name\": \"iPad_01\"\n            },\n            {\n                \"deviceudid\": \"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\n                \"device_name\": \"iPad_02\"\n            },\n            {\n                \"deviceudid\": \"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\n                \"device_name\": \"iPad_03\"\n            }\n        ],\n        \"rows\": 3,\n        \"page_size\": 100,\n        \"page\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "List Devices By Group",
+					"_postman_id": "621f9ec2-3903-40ff-9ea8-521284e61afe",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"options\": {\n        \"iddevicegroup\": \"123\"\n    }\n}",
+							"options": {}
+						},
+						"url": "{{url_base}}/listdevicesbygroup",
+						"description": "You will hit the endpoint /listdevices and can send parameters to filter your request for the specific info you want to receive in your response."
+					},
+					"response": [
+						{
+							"id": "d43e9e04-3b69-4adb-98c4-cf55b7cd71cb",
+							"name": "Get Devices by Group",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"api-access-token\",\n    \"options\": {\n        \"iddevicegroup\": \"100\"\n    }\n}"
+								},
+								"url": "https://managerapi.mosyle.com/v2/listdevicesbygroup"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 19 May 2020 12:47:32 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.43 (Unix) PHP/7.3.16"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.16"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"status\": \"OK\",\n    \"response\": {\n    \t\"group_name\": \"Class 101\",\n        \"udids\": [\n            \"1CD85FCF-04EA-5540-9E73-94FB4D36A392\",\n            \"22473995-BE4A-0CE0-FA60-26827D981212\",\n            \"E4ED28D6-6C5D-5B5C-93FB-AESAD12321J3\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Devices",
+					"_postman_id": "d8ea6efb-bd63-487e-b4db-4bb45096a4e6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"elements\": [\n        {\n            \"serialnumber\": \"XXXXXXXXXXXX\",\n            \"tags\": \"New Tag\"\n        }\n    ]\n}",
+							"options": {}
+						},
+						"url": "{{url_base}}/devices"
+					},
+					"response": [
+						{
+							"id": "922b3670-560b-47ca-9962-5b301e6730e3",
+							"name": "Update Device Name",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"elements\": [\n        {\n            \"serialnumber\": \"XXXXXXXXXXXX\",\n            \"name\": \"New Name\",\n            \"tags\": \"New Tag, Other New Tag\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url_base}}/devices"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 10 Feb 2020 11:42:41 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"status\": \"OK\",\n    \"devices\": [\n        \"XXXXXXXXXXXX\"\n    ]\n}"
+						},
+						{
+							"id": "acb1df42-2b0d-4656-9c54-7eff728b6488",
+							"name": "Update Asset Tag",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"api-access-token\",\n    \"elements\": [\n        {\n            \"serialnumber\": \"XXXXXXXXXXXX\",\n            \"name\": \"New Name\",\n            \"tags\": \"New Tag, Other New Tag\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://managerapi.mosyle.com/v2/devices"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 10 Feb 2020 11:42:41 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"status\": \"OK\",\n    \"devices\": [\n        \"XXXXXXXXXXXX\"\n    ]\n}"
+						},
+						{
+							"id": "d40f9cf1-848e-4e08-a2bf-95eacf8efa3a",
+							"name": "Update Device Lock Screen Message",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"elements\": [\n        {\n            \"serialnumber\": \"XXXXXXXXXXXX\",\n            \"name\": \"New Name\",\n            \"tags\": \"New Tag, Other New Tag\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url_base}}/devices"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 10 Feb 2020 11:42:41 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"status\": \"OK\",\n    \"devices\": [\n        \"XXXXXXXXXXXX\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Bulk Operations",
+					"_postman_id": "dd41ec18-9a0e-49a8-86f8-969c7cc99454",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"elements\": [\n        {\n            \"operation\": \"wipe_devices\",\n            \"devices\": [\n                \"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\"\n            ],\n            \"options\": {\n                \"RevokeVPPLicenses\": \"false\"\n            }\n        }\n    ]\n}",
+							"options": {}
+						},
+						"url": "{{url_base}}/bulkops"
+					},
+					"response": [
+						{
+							"id": "031da179-f388-4400-84a8-20d50351ecfc",
+							"name": "Shutdown",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"api-access-token\",\n    \"elements\": [\n        {\n            \"operation\": \"wipe_devices\",\n            \"groups\": [\n                \"210\"\n            ],\n            \"options\": {\n                \"RevokeVPPLicenses\": \"false\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://managerapi.mosyle.com/v2/bulkops"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 10 Feb 2020 11:59:55 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"status\": \"OK\",\n    \"response\": [\n        {\n            \"status\": \"COMMAND_SENT\",\n            \"info\": \"Command sent successfully.\"\n        }\n    ]\n}"
+						},
+						{
+							"id": "11553393-5934-455b-aa58-24ca1039cae7",
+							"name": "Restart",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"elements\": [\n        {\n            \"operation\": \"restart_devices\",\n            \"groups\": [\n                \"210\"\n            ]\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url_base}}/bulkops"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 10 Feb 2020 12:06:21 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"status\": \"OK\",\n    \"response\": [\n        {\n            \"status\": \"COMMAND_SENT\",\n            \"info\": \"Command sent successfully.\"\n        }\n    ]\n}"
+						},
+						{
+							"id": "37046baf-8c3a-4bf4-a8a9-fc06f67864bc",
+							"name": "Clear All Commands",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"elements\": [\n        {\n            \"operation\": \"clear_commands\",\n            \"groups\": [\n                \"210\"\n            ]\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url_base}}/bulkops"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 10 Feb 2020 12:13:38 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"status\": \"OK\",\n    \"response\": [\n        {\n            \"status\": \"COMMAND_CLEARED\",\n            \"info\": \"Command cleared successfully.\"\n        }\n    ]\n}"
+						},
+						{
+							"id": "57a33a29-9147-4feb-8889-7aa5163f66ca",
+							"name": "Unassign Devices",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"elements\": [\n        {\n            \"operation\": \"clear_commands\",\n            \"groups\": [\n                \"210\"\n            ]\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url_base}}/bulkops"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 10 Feb 2020 12:13:38 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"status\": \"OK\",\n    \"response\": [\n        {\n            \"status\": \"COMMAND_CLEARED\",\n            \"info\": \"Command cleared successfully.\"\n        }\n    ]\n}"
+						},
+						{
+							"id": "85e4b02f-9429-4607-b469-a45b8a783f8a",
+							"name": "Clear Pending Commands",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"elements\": [\n        {\n            \"operation\": \"clear_commands\",\n            \"groups\": [\n                \"210\"\n            ]\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url_base}}/bulkops"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 10 Feb 2020 12:13:38 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"status\": \"OK\",\n    \"response\": [\n        {\n            \"status\": \"COMMAND_CLEARED\",\n            \"info\": \"Command cleared successfully.\"\n        }\n    ]\n}"
+						},
+						{
+							"id": "f59865c6-f081-4c44-a347-f0b6965b94dd",
+							"name": "Clear Failed Commands",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"elements\": [\n        {\n            \"operation\": \"clear_commands\",\n            \"groups\": [\n                \"210\"\n            ]\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url_base}}/bulkops"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 10 Feb 2020 12:13:38 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"status\": \"OK\",\n    \"response\": [\n        {\n            \"status\": \"COMMAND_CLEARED\",\n            \"info\": \"Command cleared successfully.\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Lost Mode",
+					"_postman_id": "a7b7b5fe-4e0c-4ecb-9d69-ab0f5bca90c2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"accessToken\": \"{{token}}\",\n\t\"elements\": [{\n\t\t\"operation\": \"enable\",\n\t\t\"groups\": [\"210\"],\n\t\t\"message\": \"I'm Lost :(\",\n\t\t\"phone_number\": \"Call to (XXX) XXX-XXXX\",\n\t\t\"footnote\": \"Footnote Text!\"\n\t}]\n}",
+							"options": {}
+						},
+						"url": "{{url_base}}/lostmode"
+					},
+					"response": [
+						{
+							"id": "00b18a1e-388e-4876-a6d6-96aa3ecef77c",
+							"name": "Disable Lost Mode",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"accessToken\": \"{{token}}\",\n\t\"elements\": [{\n\t\t\"operation\": \"disable\",\n\t\t\"groups\": [\"210\"]\n\t}]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url_base}}/lostmode"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 12 Feb 2020 16:50:09 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"response\": [\n        {\n            \"status\": \"COMMAND_SENT\",\n            \"info\": \"Command sent successfully.\"\n        }\n    ]\n}"
+						},
+						{
+							"id": "51256531-79c4-4539-abd7-fe0237c6f152",
+							"name": "Request Location",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"accessToken\": \"{{token}}\",\n\t\"elements\": [{\n\t\t\"operation\": \"request_location\",\n\t\t\"groups\": [\"210\"]\n\t}]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url_base}}/lostmode"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 12 Feb 2020 17:55:50 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"response\": [\n        {\n            \"status\": \"COMMAND_SENT\",\n            \"info\": \"Command sent successfully.\"\n        }\n    ]\n}"
+						},
+						{
+							"id": "d17ba1e7-d961-4a46-9db1-cf01e08b185f",
+							"name": "Play Sound",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"accessToken\": \"{{token}}\",\n\t\"elements\": [{\n\t\t\"operation\": \"play_sound\",\n\t\t\"groups\": [\"210\"]\n\t}]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url_base}}/lostmode"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 12 Feb 2020 17:19:35 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"response\": [\n        {\n            \"status\": \"COMMAND_SENT\",\n            \"info\": \"Command sent successfully.\"\n        }\n    ]\n}"
+						},
+						{
+							"id": "e9afd92f-215a-42d2-9aaf-3961dfedd45a",
+							"name": "Enable Lost Mode",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"accessToken\": \"api-access-token\",\n\t\"elements\": [{\n\t\t\"operation\": \"enable\",\n\t\t\"groups\": [\"210\"],\n\t\t\"message\": \"I'm Lost :(\",\n\t\t\"phone_number\": \"Call to (XXX) XXX-XXXX\",\n\t\t\"footnote\": \"Footnote Text!\"\n\t}]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://managerapi.mosyle.com/v2/lostmode"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 12 Feb 2020 16:48:44 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"response\": [\n        {\n            \"status\": \"COMMAND_SENT\",\n            \"info\": \"Command sent successfully.\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "List Device Groups",
+					"_postman_id": "af5f8630-e088-4acd-ad53-f562d54fbb5f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"options\": {\n        \"os\": \"mac\"\n    }\n}",
+							"options": {}
+						},
+						"url": "{{url_base}}/listdevicegroups",
+						"description": "You will hit the endpoint /listdevices and can send parameters to filter your request for the specific info you want to receive in your response."
+					},
+					"response": [
+						{
+							"id": "f5d68490-2325-4113-976b-4330b59768e2",
+							"name": "Read Device Groups",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"api-access-token\",\n    \"options\": {\n        \"os\": \"mac\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://managerapi.mosyle.com/v2/listdevicegroups"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 10 Feb 2020 13:22:03 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=99"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"status\": \"OK\",\n    \"response\": {\n        \"groups\": [\n            {\n                \"id\": \"1\",\n                \"name\": \"Device Group #1\",\n                \"device_numbers\": \"10\"\n            },\n            {\n                \"id\": \"2\",\n                \"name\": \"Device Group #2\",\n                \"device_numbers\": \"5\"\n            }\n        ],\n        \"rows\": 2,\n        \"page_size\": 50,\n        \"page\": 1\n    }\n}"
+						}
+					]
+				}
+			],
+			"_postman_id": "6cdf56ce-f2fd-4d99-bbc5-9cfbac43b784"
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Users",
+					"_postman_id": "903e82ae-2afa-4470-8bc5-af4f781f6683",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"elements\": [\n        {\n            \"operation\": \"save\",\n            \"id\": \"new.user.1\",\n            \"name\": \"New User\",\n            \"type\": \"T\",\n            \"email\": \"new.user@email.com\",\n            \"locations\": [\n                {\n                    \"name\": \"Mosyle School\"\n                }\n            ],\n            \"welcome_email\": 0\n        }\n    ]\n}",
+							"options": {}
+						},
+						"url": "{{url_base}}/users"
+					},
+					"response": [
+						{
+							"id": "2d9cbe9b-6219-429a-ab7a-b4461ac3946e",
+							"name": "Update Users",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"elements\": [\n        {\n            \"operation\": \"save\",\n            \"id\": \"new.user.1\",\n            \"name\": \"New User\",\n            \"type\": \"T\",\n            \"email\": \"new.user@email.com\",\n            \"locations\": [\n                {\n                    \"name\": \"Mosyle School\"\n                }\n            ],\n            \"welcome_email\": 0\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url_base}}/users"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 13 Feb 2020 14:16:31 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"status\": \"OK\",\n    \"elements\": [\n        {\n            \"id\": \"new.user.1\",\n            \"status\": \"OK\"\n        }\n    ]\n}"
+						},
+						{
+							"id": "96cdee47-606c-4141-aeb9-8897b1f5cf3c",
+							"name": "Create Users",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"api-access-token\",\n    \"elements\": [\n        {\n            \"operation\": \"save\",\n            \"id\": \"new.user.1\",\n            \"name\": \"New User\",\n            \"type\": \"T\",\n            \"email\": \"new.user@email.com\",\n            \"locations\": [\n                {\n                    \"name\": \"Mosyle School\"\n                }\n            ],\n            \"welcome_email\": 0\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://managerapi.mosyle.com/v2/users"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 13 Feb 2020 14:16:31 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"status\": \"OK\",\n    \"elements\": [\n        {\n            \"id\": \"new.user.1\",\n            \"status\": \"OK\"\n        }\n    ]\n}"
+						},
+						{
+							"id": "a1409da4-934f-4648-8eb6-3dc6be416f4f",
+							"name": "Delete Users",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"elements\": [\n        {\n            \"operation\": \"delete\",\n            \"id\": \"new.user.1\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url_base}}/users"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 10 Feb 2020 12:55:28 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"status\": \"OK\",\n    \"elements\": [\n        {\n            \"id\": \"new.user.1\",\n            \"status\": \"OK\"\n        }\n    ]\n}"
+						},
+						{
+							"id": "da357266-0836-4933-b33b-c2aeafa08cd3",
+							"name": "Assign Devices to Users",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"elements\": [\n        {\n            \"operation\": \"assign_device\",\n            \"id\": \"new.user.1\",\n            \"serial_number\": \"AAAAAAAAAAAA\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url_base}}/users"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 10 Feb 2020 12:58:26 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"status\": \"OK\",\n    \"elements\": [\n        {\n            \"id\": \"new.user.1\",\n            \"status\": \"OK\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Read Users",
+					"_postman_id": "2d81e4dc-c122-4159-bd08-88b33c6d92c5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"options\": {\n        \"types\": [\n            \"TEACHER\"\n        ],\n        \"specific_columns\": [\n            \"id\",\n            \"name\",\n            \"email\",\n            \"managedappleid\",\n            \"serial_number\",\n            \"type\",\n            \"locations\",\n            \"account\"\n        ]\n    }\n}",
+							"options": {}
+						},
+						"url": "{{url_base}}/listusers"
+					},
+					"response": [
+						{
+							"id": "92ee5ebf-e563-40fc-b210-92bbff1d51ae",
+							"name": "Read Users",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"api-access-token\",\n    \"options\": {\n        \"specific_columns\": [\n            \"type\"\n        ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://managerapi.mosyle.com/v2/listusers"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 10 Feb 2020 12:30:22 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"status\": \"OK\",\n    \"response\": {\n        \"users\": [\n            {\n                \"id\": \"student.01\",\n                \"type\": \"STUDENT\"\n            },\n            {\n                \"id\": \"student.02\",\n                \"type\": \"STUDENT\"\n            },\n            {\n                \"id\": \"admin.01\",\n                \"type\": \"ADMIN\"\n            }\n        ],\n        \"total\": \"3\",\n        \"page\": 1,\n        \"page_size\": 100\n    }\n}"
+						}
+					]
+				}
+			],
+			"_postman_id": "a3ed794c-c182-4864-b5e9-133d712a8dc0"
+		},
+		{
+			"name": "Classes",
+			"item": [
+				{
+					"name": "Classes",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"id": "4d5cc888-5f23-4c94-bfb0-eeeef16db7d0"
+							}
+						}
+					],
+					"_postman_id": "04e749b9-2e1d-4cde-a70d-dbe9c70c55b7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"elements\": [\n        {\n            \"operation\": \"save\",\n            \"id\": \"{{$guid}}\",\n            \"course_name\": \"Test API\",\n            \"class_name\": \"Class Test\",\n            \"location\": \"Mosyle Training\",\n            \"idteacher\": \"lauritsona\"\n        }\n    ]\n}",
+							"options": {}
+						},
+						"url": "{{url_base}}/classes"
+					},
+					"response": [
+						{
+							"id": "39874521-0655-4ddc-aeec-82efcfc63f6e",
+							"name": "Delete Classes",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"elements\": [\n        {\n            \"operation\": \"delete\",\n            \"id\": \"class.id\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url_base}}/classes"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 10 Feb 2020 13:09:11 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"status\": \"OK\",\n    \"elements\": [\n        {\n            \"id\": \"class.id\",\n            \"status\": \"OK\"\n        }\n    ]\n}"
+						},
+						{
+							"id": "96c6538c-34f9-4400-91b9-4d761c8fb1ce",
+							"name": "Create Classes",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessTaoken\": \"api-access-token\",\n    \"elements\": [\n        {\n            \"operation\": \"save\",\n            \"id\": \"class.id\",\n            \"course_name\": \"Test API\",\n            \"class_name\": \"Class Test\",\n            \"location\": \"Mosyle Training\",\n            \"idteacher\": \"teacher.api\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://managerapi.mosyle.com/v2/classes"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 10 Feb 2020 13:07:42 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"status\": \"OK\",\n    \"elements\": [\n        {\n            \"id\": \"class.id\",\n            \"status\": \"OK\"\n        }\n    ]\n}"
+						},
+						{
+							"id": "da679748-0892-4831-adc1-a08b78c00dda",
+							"name": "Update Classes",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"elements\": [\n        {\n            \"operation\": \"delete\",\n            \"id\": \"class.id\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url_base}}/classes"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 10 Feb 2020 13:09:11 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Unix) PHP/7.3.14"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.14"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"status\": \"OK\",\n    \"elements\": [\n        {\n            \"id\": \"class.id\",\n            \"status\": \"OK\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "List Classes",
+					"_postman_id": "79931b09-45cc-4726-9af3-7c432c9b1c5d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accessToken\": \"{{token}}\",\n    \"options\":        {\n          \"specific_columns\": [\"class_name\",\"teacher\",\"location\"]\n} \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url_base}}/listclasses"
+					},
+					"response": [
+						{
+							"id": "fcb71b84-28e1-43a9-89da-e8dd337dbb58",
+							"name": "Read Classes",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"api-access-token\",\n    \"options\":        {\n          \"specific_columns\": [\"class_name\",\"teacher\",\"location\"]\n} \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://managerapi.mosyle.com/v2/listclasses"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"responseTime": null,
+							"body": ""
+						}
+					]
+				}
+			],
+			"_postman_id": "9b4dc115-0dcb-4fe5-a66f-371df3456c14"
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": {
+			"password": "{{user_password}}",
+			"username": "{{user_email}}"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				],
+				"id": "f394c6f5-16b2-4d11-b6cf-0bfd35f1cc6f"
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status is 200 - Success\", function(){",
+					"    pm.response.to.have.status(200);",
+					"});"
+				],
+				"id": "bd798c35-b2cd-45a1-af6f-574e1425d4ec"
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "6f42f250-b56e-4f07-9f02-a0e6a38ae5ba",
+			"key": "token",
+			"value": "api-access-token",
+			"type": "string"
+		},
+		{
+			"id": "c4e9ec82-4329-442c-a69e-255e25043f4e",
+			"key": "url_base",
+			"value": "https://managerapi.mosyle.com/v2",
+			"type": "string"
+		},
+		{
+			"id": "c33e08c2-292b-42ba-b41a-f3f71b640b92",
+			"key": "user_email",
+			"value": "admin@email",
+			"type": "default"
+		},
+		{
+			"id": "90d59f48-44ce-424f-8f06-c9eba490814f",
+			"key": "user_password",
+			"value": "password",
+			"type": "default"
+		}
+	]
+}
