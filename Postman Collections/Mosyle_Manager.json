@@ -2069,18 +2069,6 @@
 				}
 			],
 			"id": "9b4dc115-0dcb-4fe5-a66f-371df3456c14"
-		},
-		{
-			"name": "New Request",
-			"id": "6734f798-a323-4433-98f5-79a0a98796ec",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
 		}
 	],
 	"auth": {
@@ -2116,25 +2104,25 @@
 	],
 	"variable": [
 		{
-			"id": "9ef0b9d3-d329-4a4d-bfd0-5c601094f5c4",
+			"id": "58ade3f3-ae17-45a0-a9c5-180f47bebfdf",
 			"key": "token",
 			"value": "api-access-token",
 			"type": "string"
 		},
 		{
-			"id": "396f4106-041a-4e07-b2b6-73dae461d53b",
+			"id": "a58d5aea-6a34-4782-a398-cca4aabfedc8",
 			"key": "url_base",
 			"value": "https://managerapi.mosyle.com/v2",
 			"type": "string"
 		},
 		{
-			"id": "e2d63a31-ad58-49a7-ae2f-eb378dbc8003",
+			"id": "8f524859-4661-42eb-ba42-f7d4cae273d1",
 			"key": "user_email",
 			"value": "admin@email",
 			"type": "default"
 		},
 		{
-			"id": "a9cb5a26-53ab-417b-a4a0-179635c5562f",
+			"id": "061ef547-9f0a-436b-b014-de89efaaf170",
 			"key": "user_password",
 			"value": "password",
 			"type": "default"
