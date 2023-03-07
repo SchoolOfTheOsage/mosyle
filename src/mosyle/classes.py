@@ -165,17 +165,17 @@ def classes():
     pass
 
 
-OPTIONS = [
-    ("-s", "--course-name", "Course Name"),
-    ("-n", "--class-name", "Class Name"),
-    ("-l", "--location", "Location"),
-    ("-t", "--teacher-id", "Teacher User ID"),
-    ("-R", "--room", "Room"),
-    ("-p", "--platform", "Platform"),
-    ("-c", "--coordinators", "Coordinators User ID [id1,id2]"),
-    ("-s", "--students", "Students User ID [id1,id2]"),
-    ("-r", "--roster", "Class Roster CSV (Role, User ID)"),
-]
+OPTIONS = {
+    "course_name": ("-s", "--course-name", "Course Name"),
+    "class_name": ("-n", "--class-name", "Class Name"),
+    "location": ("-l", "--location", "Location"),
+    "teacher id": ("-t", "--teacher-id", "Teacher User ID"),
+    "room": ("-R", "--room", "Room"),
+    "platform": ("-p", "--platform", "Platform"),
+    "coordinators": ("-c", "--coordinators", "Coordinators User ID [id1,id2]"),
+    "students": ("-s", "--students", "Students User ID [id1,id2]"),
+    "roster": ("-r", "--roster", "Class Roster CSV (Role, User ID)"),
+}
 
 
 @classes.command()
@@ -249,6 +249,7 @@ def delete():
     update_cache()
 
 
+'''
 class Classes:
     """Classes"""
 
@@ -368,7 +369,6 @@ class Classes:
         pass
 
 
-'''
 Class Cli:
     """Classes CLI"""
 
