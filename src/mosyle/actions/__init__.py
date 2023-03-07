@@ -1,17 +1,5 @@
 """Mosyle Manager Python API - Action"""
 
-import click
-
-from .api_client import ApiClient
-from .click_order_commands import OrderCommands
-from .str_enum import StrEnum
-
-
-class ActionApiResource(StrEnum):
-    """Action API Resource Enumeration"""
-
-    GET = "adminlogs"
-
 
 class Action:
     """Action"""
@@ -38,13 +26,3 @@ class Action:
             keys["page"] = page
 
         # return self.post(Endpoint.ACTIONS, keys=keys, filter_options=filter_options)
-
-
-class ActionCli:
-    "Action CLI"
-
-    @staticmethod
-    @click.group(cls=OrderCommands)
-    def action():
-        """Action"""
-        click.echo("Not implemented")

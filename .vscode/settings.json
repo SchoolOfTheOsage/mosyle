@@ -1,11 +1,5 @@
 {
     "material-icon-theme.folders.associations": {
-        "mosyle": "class",
-        "mosyle/actions": "class",
-        "mosyle/classes": "class",
-        "mosyle/devices": "class",
-        "mosyle/users": "class",
-        "mosyle/accounts": "class",
         "docs": "markdown",
         "docs/official": "markdown",
     },
@@ -66,6 +60,7 @@
         "sampleproject",
         "serialnumber",
         "setuptools",
+        "sourcery",
         "tvos",
         "UDID",
         "udids",

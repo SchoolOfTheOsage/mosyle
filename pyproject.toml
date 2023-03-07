@@ -36,7 +36,7 @@ dev = ["check-manifest"]
 test = ["coverage"]
 
 [project.scripts]
-mosyle = "mosyle.__main__:main"
+mosyle = "mosyle.cli:mosyle"
 
 [project.urls]
 "Github" = "https://github.com/SchoolOfTheOsage/mosyle"

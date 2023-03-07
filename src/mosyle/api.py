@@ -31,7 +31,7 @@ class ApiClient:
         options: dict[str, object] | None = None,
         elements: list[dict[str, object | list[str]]] | None = None,
         filter_options: dict[str, object] | None = None,
-    ) -> dict[str, object]:
+    ) -> dict[str, list[object]]:
         """Post Request"""
 
         payload = keys if keys is not None else {}
@@ -46,10 +46,12 @@ class ApiClient:
         # FIXME: Paging support
         # FIXME: Handle responses other than 200
 
-        return requests.post(
+        response: dict[str, list[object]] = requests.post(
             f"{REQUEST_URL}/{endpoint}",
             json=payload,
             headers=REQUEST_HEADERS,
             timeout=REQUEST_TIMEOUT,
             auth=self.auth,
-        ).json()["response"]
+        ).json()  # ["response"]
+
+        return response

@@ -1,59 +1,10 @@
 """Mosyle Manager Python API - Device"""
 from dataclasses import dataclass
 
-import click
-
-from .api_client import ApiClient
-from .click_order_commands import OrderCommands
-from .str_enum import StrEnum
-
-
-class UserApiResource(StrEnum):
-    """User API Resource Enumeration"""
-
-    GET = "listusers"
-    OPERATION = "users"
-
-
-class UserColumn(StrEnum):
-    """User Column Enumeration"""
-
-    ID = "id"
-    NAME = "name"
-    EMAIL = "email"
-    MANAGED_APPLE_ID = "managedappleid"
-    SERIAL_NUMBER = "serial_number"
-    TYPE = "type"
-    LOCATIONS = "locations"
-    ACCOUNT = "account"
-
-
-class UserListType(StrEnum):
-    """User List Type Enumeration"""
-
-    STUDENT = "STUDENT"
-    TEACHER = "TEACHER"
-    LOCATION_LEADER = "LOCATION_LEADER"
-    STAFF = "STAFF"
-    ADMIN = "ADMIN"
-    ACCOUNT_ADMIN = "ACCOUNT_ADMIN"
-    DISTRICT_ADMIN = "DISTRICT_ADMIN"
-
-
-class UserOperationType(StrEnum):
-    """User Operation Type Enumeration"""
-
-    STUDENT = "S"
-    TEACHER = "T"
-    STAFF = "STAFF"
-
-
-class UserOperation(StrEnum):
-    """User Operation Enumeration"""
-
-    SAVE = "save"
-    DELETE = "delete"
-    ASSIGN_DEVICE = "assign_device"
+from .column import Column
+from .list_type import ListType
+from .operation import Operation
+from .operation_type import OperationType
 
 
 @dataclass(frozen=True, slots=True)
@@ -63,8 +14,8 @@ class User:
     def get(
         self,
         page: int | None = None,
-        specific_columns: list[UserColumn] | None = None,
-        types: list[UserListType] | None = None,
+        specific_columns: list[Column] | None = None,
+        types: list[ListType] | None = None,
     ):
         """List Users"""
 
@@ -81,9 +32,9 @@ class User:
     def operation(
         self,
         user_id: str,
-        operation: UserOperation,
+        operation: Operation,
         name: str | None = None,
-        user_type: UserOperationType | None = None,
+        user_type: OperationType | None = None,
         email: str | None = None,
         managed_apple_id: str | None = None,
         locations: list[tuple[str, str]]
@@ -113,13 +64,3 @@ class User:
             element["serial_number"] = serial_number
 
         # return self.post(Endpoint.USERS, elements=[element])
-
-
-class UserCli:
-    "User CLI"
-
-    @staticmethod
-    @click.group()
-    def user():
-        """User"""
-        click.echo("Not implemented")
